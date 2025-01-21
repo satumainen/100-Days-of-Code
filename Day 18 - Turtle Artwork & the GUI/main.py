@@ -18,8 +18,11 @@ def paint_dots(rows):
     colors = extract_colors()
     turtle = Turtle()
     turtle.speed(5)
-    last_turn = "right"
     turtle.penup()
+    turtle.setheading(225)
+    turtle.forward(250)
+    turtle.setheading(0)
+    last_turn = "right"
     for i in range (0,rows):
         turtle.dot(20, random.choice(colors))
         for _ in range(rows-1):
@@ -35,8 +38,6 @@ def paint_dots(rows):
             turtle.forward(50)
             turtle.right(90)
             last_turn = "right"
-
-
 
 def main():
     screen = Screen()

@@ -1,0 +1,11 @@
+# Ignore all __pycache__ folders and Python compiled files
+__pycache__/
+*.pyc
+
+# Ignore IDE-specific files (e.g., PyCharm or VSCode)
+.idea/
+.vscode/
+
+# Ignore any other unnecessary files
+.DS_Store
+Thumbs.db
