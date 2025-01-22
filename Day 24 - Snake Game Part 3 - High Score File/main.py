@@ -39,17 +39,14 @@ def main():
 
         #detect collision with wall
         if new_snake.head.xcor() > 280 or new_snake.head.xcor() < -280 or new_snake.head.ycor() > 280 or new_snake.head.ycor() < -280:
-            game_is_on = False
-            scoreboard.game_over()
+            scoreboard.reset_highscore()
+            new_snake.reset()
 
         #detect collision with tail with slicing
         for block in new_snake.block[1:]:
             if new_snake.head.distance(block) < 10:
-                game_is_on = False
-                scoreboard.game_over()
-
-
-
+                scoreboard.reset_highscore()
+                new_snake.reset()
 
     screen.exitonclick()
 

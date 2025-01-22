@@ -6,6 +6,7 @@ UP = 90
 DOWN = 270
 LEFT = 180
 RIGHT = 0
+SEGMENT_GRAVEYARD = (1000, 1000)
 
 class Snake:
 
@@ -52,3 +53,10 @@ class Snake:
 
     def extend(self):
         self.add_segment(self.block[-1].position())
+
+    def reset(self):
+        for segment in self.block:
+            segment.goto(SEGMENT_GRAVEYARD)
+        self.block.clear()
+        self.create_snake()
+        self.head = self.block[0]
