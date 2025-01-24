@@ -14,16 +14,13 @@ def main():
     while correct_answers < 50:
         answer_state= str(screen.textinput(title=f"{correct_answers} States Correct", prompt="What's another state's name'")).title()
         if answer_state.lower() == "exit":
-            states_to_learn = []
-            for state in states_list:
-                if state not in correct_guesses_list:
-                    states_to_learn.append(state)
+            states_to_learn = [state for state in states_list if state not in correct_guesses_list]
             new_data = pandas.DataFrame(states_to_learn)
             new_data.to_csv("states_to_learn.csv")
             print(new_data)
 
             break
-        if answer_state in states_list:
+        if answer_state in states_list and answer_state not in correct_guesses_list:
             t = turtle.Turtle()
             t.hideturtle()
             t.penup()
