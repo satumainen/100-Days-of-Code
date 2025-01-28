@@ -1,12 +1,32 @@
-import tkinter
+from tkinter import *
 
-window = tkinter.Tk()
+window = Tk()
 window.title("My First GUI Program")
 window.minsize(500, 300)
 
 #label component
-my_label = tkinter.Label(text="I am a Label", font=("Arial", 20, "italic")) #does not yet show the label in the GUI
-my_label.pack(side="left") #places label into the GUI
+my_label = Label(text="I am a Label", font=("Arial", 20, "italic")) #does not yet show the label in the GUI
+my_label.pack() #places label into the GUI
+
+# https://docs.python.org/3/library/tkinter.html
+
+#CHANGE TEXT
+# my_label["text"] = "new text value" #change text value or like this:
+#my_label.config(text="New text")
+
+#CREATE BUTTON
+
+def button_clicked():
+    user_input = input.get() #get user input from input
+    my_label.config(text=user_input)
+
+button = Button(text="Click Me", command=button_clicked)
+button.pack()
+#event listener
+
+#ENTRY (input)
+input = Entry(width=10)
+input.pack()
 
 
 

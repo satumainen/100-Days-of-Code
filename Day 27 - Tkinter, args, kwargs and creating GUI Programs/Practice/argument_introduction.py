@@ -52,5 +52,6 @@ class Car:
 
 
 my_car = Car(make="Seat", model="Ibiza") #This will only show self: Car, **kw
-print(my_car.model)
+print(my_car.color)
+
 
