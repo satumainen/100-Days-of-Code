@@ -28,6 +28,20 @@ button.pack()
 input = Entry(width=10)
 input.pack()
 
+"""
+Tkinter has different layout managers that manage the positioning of elements in the GUI
+
+Pack: Packs elements next to each other in a vaguely logical way, by default stacked on top of each other.
+The side parameter can be used, but specific placement is hard.
+
+Place: For precise positioning with x and y values. Finding coordinates can be tricky when the number of
+elements in the GUI increase.
+
+Grid: Divides program to any number of ows and columns. Start from the top and work element by element.
+
+NOTE: You cannot mix grid and pack, chose one.
+
+"""
 
 
 #place at bottom
