@@ -13,6 +13,11 @@ current_card = {}
 to_learn = {}
 #------------------------------------- IMPORT CSV ---------------------------------------------
 
+"""
+The code will run the original CSV french_words.csv. If the user has practiced with the app 
+previously, the user will continue to practice the words that they did not mark as known.
+"""
+
 try:
     word_data = pandas.read_csv("data/words_to_learn.csv")
 except FileNotFoundError:
@@ -36,6 +41,7 @@ def next_card():
 
 
 def flip_card():
+    """Flips the card to show the answer in English"""
     flash_card.itemconfig(card_title, fill="white")
     flash_card.itemconfig(card_word, fill="white")
     flash_card.itemconfig(card_title, text="English")
@@ -43,6 +49,7 @@ def flip_card():
     flash_card.itemconfig(card_word, text=current_card["English"])
 
 def is_known():
+    """Removes known words from the training dictionary"""
     to_learn.remove(current_card)
     print(len(to_learn))
     data = pandas.DataFrame(to_learn)
