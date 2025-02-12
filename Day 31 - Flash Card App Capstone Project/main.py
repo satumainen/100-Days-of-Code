@@ -1,8 +1,6 @@
 from tkinter import *
-from tkinter import messagebox
 import random
 import pandas
-from pandas import DataFrame
 
 BACKGROUND_COLOR = "#B1DDC6"
 LANGUAGE_FONT = ("Ariel", 40, "italic")
