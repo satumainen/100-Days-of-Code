@@ -60,7 +60,7 @@ for hour_data in weather_data["list"]:
     if int(condition_code) < 700:
         will_rain = True
 
-if will_rain == False:
+if will_rain:
     #set up Twilio client
     client = Client(account_sid, auth_token)
     message = client.messages.create(
