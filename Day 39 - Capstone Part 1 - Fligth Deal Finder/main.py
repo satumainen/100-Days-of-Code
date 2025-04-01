@@ -7,16 +7,17 @@ from flight_search import FlightSearch
 from flight_data import FlightData
 from notification_manager import NotificationManager
 
-def main():
-    dm = DataManager()
-    prices = dm.get_prices()
-    if prices[0]["iataCode"] == "":
-        flight_search = FlightSearch()
-        for row in prices:
-            iata_code = flight_search.get_iata_code(row["city"])
-            #print("IATA CODE: ", iata_code)
-            #update iataCode with data_manager
-            dm.destination_data = prices
-            dm.update_iata_code()
 
-main()
+data_manager = DataManager()
+sheet_data = data_manager.get_destination_data()
+
+if sheet_data[0]["iataCode"] == "":
+    print("In loop in main")
+    flight_search = FlightSearch()
+    for row in sheet_data:
+        row["iataCode"] = flight_search.get_iata_code(row["city"])
+
+    print(f"sheet_data:\n {sheet_data}")
+    data_manager.destination_data = sheet_data
+    data_manager.update_destination_codes()
+

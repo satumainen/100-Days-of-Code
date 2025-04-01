@@ -15,5 +15,6 @@ class FlightSearch:
         self.flights = []
 
     def get_iata_code(self, city):
+        print("In Flight Search")
         code = "test"
         return code
