@@ -1,10 +1,9 @@
 from pprint import pprint
 import requests
 import os
+from requests.auth import HTTPBasicAuth
 
-FLIGHT_SHEET_GET_API = os.environ.get("FLIGHT_SHEET_GET_API")
-FLIGHT_SHEET_POST_API = os.environ.get("FLIGHT_SHEET_POST_API")
-FLIGHT_SHEET_PUT_API = os.environ.get("FLIGHT_SHEET_PUT_API")
+FLIGHT_SHEET_ENDPOINT = os.environ.get('FLIGHT_SHEET_GET_API')
 
 class DataManager:
 
@@ -13,20 +12,22 @@ class DataManager:
 
     def get_prices(self):
         """Fetches data from Google spreadsheets"""
-        response  = requests.get(FLIGHT_SHEET_GET_API)
+        response  = requests.get(FLIGHT_SHEET_ENDPOINT)
         if response.status_code == 200:
             data = response.json()
-            prices_data = data["prices"]
-            return prices_data
+            self.prices_data = data["prices"]
+            return self.prices_data
         else:
-            print(f"Error getting prices, status code {response.status_code}")
+            print(f"Error getting prices from Google file, status code {response.status_code}")
 
-    def update_iata_code(self, city, iata_code):
-        update_params = {
-            "City": city,
-            "IATA CODE": iata_code,
-        }
-        endpoint = f"{FLIGHT_SHEET_PUT_API}{city}"
-
-
-
+    def update_iata_code(self):
+        """Updates the IATA code in the spreadsheet"""
+        for city in self.prices_data:
+            new_data = {
+                "price": {
+                    "iataCode": city["iataCode"]
+                }
+            }
+            response =requests.put(
+                url=f"{FLIGHT_SHEET_ENDPOINT}/{city['id']}",json=new_data)
+            print(response.text)

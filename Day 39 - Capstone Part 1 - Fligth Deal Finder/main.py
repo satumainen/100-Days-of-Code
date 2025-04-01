@@ -10,13 +10,13 @@ from notification_manager import NotificationManager
 def main():
     dm = DataManager()
     prices = dm.get_prices()
-    pprint.pprint(prices)
-    for city in prices:
-        if city["iataCode"] == "":
-            print("No iata code")
-            flight_search = FlightSearch()
-            iata_code = flight_search.get_iata_code(city)
-            print("IATA CODE: ", iata_code)
+    if prices[0]["iataCode"] == "":
+        flight_search = FlightSearch()
+        for row in prices:
+            iata_code = flight_search.get_iata_code(row["city"])
+            #print("IATA CODE: ", iata_code)
             #update iataCode with data_manager
+            dm.destination_data = prices
+            dm.update_iata_code()
 
 main()
